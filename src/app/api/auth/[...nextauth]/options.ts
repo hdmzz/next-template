@@ -1,3 +1,4 @@
+import { randomUUID } from "crypto";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import { call } from "three/examples/jsm/nodes/Nodes.js";
@@ -32,7 +33,7 @@ export const options = {
                     if (profile.email === "hdamitzian@gmail.com")
                         userRole = "admin";
                     return {
-                        id: profile.id.toString(),
+                        id: profile.id?.toString() ?? randomUUID(),
                         name: profile.name,
                         email: profile.email,
                         image: profile.picture,
@@ -45,6 +46,7 @@ export const options = {
         ],
         callbacks: {
             async session(session: { user: any; }, user: any) {
+                console.log("Session callback", session, user);
                 return session;
             },
             async jwt(token: any, user: any) {
