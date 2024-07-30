@@ -44,11 +44,10 @@ export const options = {
             }),
         ],
         callbacks: {
-            async session(session: { user: { role: any; }; }, user: { role: any; }) {
-                session.user.role = user.role;
+            async session(session: { user: any; }, user: any) {
                 return session;
             },
-            async jwt(token: { role: any; }, user: { role: any; }) {
+            async jwt(token: any, user: any) {
                 if (user) {
                     token.role = user.role;
                 }

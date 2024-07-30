@@ -5,6 +5,7 @@ import { getServerSession } from 'next-auth'
 
 const Nav = async () => {
   const session = await getServerSession(options as any);
+  console.log(session)
 
   return (
     <header className='bg-gray-600 text-gray-400'>
