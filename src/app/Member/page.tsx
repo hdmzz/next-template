@@ -14,9 +14,7 @@ const Member = async () => {
 
   return (
     <div>
-        <h1>
-            Member Server session
-        </h1>
+        <h1>Member Server session</h1>
     </div>
   )
 }

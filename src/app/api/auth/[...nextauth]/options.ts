@@ -12,7 +12,7 @@ export const options = {
                     let userRole = "Github user";
                     if (profile.email === "hdamitzian@gmail.com") {
                         userRole = "admin";
-                        }
+                    }
                         
                         return {
                             id: profile.id.toString(),
@@ -45,8 +45,8 @@ export const options = {
             }),
         ],
         callbacks: {
-            async session(session: { user: any; }, user: any) {
-                console.log("Session callback", session, user);
+            async session(session: any) {
+                console.log("Session callback", session);
                 return session;
             },
             async jwt(token: any, user: any) {
