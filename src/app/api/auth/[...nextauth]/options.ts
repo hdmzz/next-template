@@ -3,11 +3,30 @@ import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import { call } from "three/examples/jsm/nodes/Nodes.js";
 
+function findUserField(obj: any): any {
+    if (typeof obj !== 'object' || obj === null) {
+      return undefined;
+    }
+  
+    if ('user' in obj) {
+      return obj.user;
+    }
+  
+    for (const key in obj) {
+      const result = findUserField(obj[key]);
+      if (result !== undefined) {
+        return result;
+      }
+    }
+  
+    return undefined;
+  }
+  
+
 export const options = {
         providers: [
             GitHubProvider({
                 profile: (profile) => {
-                    console.log("Github profile", profile);
                     
                     let userRole = "Github user";
                     if (profile.email === "hdamitzian@gmail.com") {
@@ -27,7 +46,6 @@ export const options = {
             }),
             GoogleProvider({
                 profile: (profile) => {
-                    console.log("Google profile", profile);
                     
                     let userRole = "Google user";
                     if (profile.email === "hdamitzian@gmail.com")
@@ -46,14 +64,14 @@ export const options = {
         ],
         callbacks: {
             async session(session: any) {
-                console.log("Session callback", session);
                 return session;
             },
             async jwt(token: any, user: any) {
+                
                 if (user) {
                     token.role = user.role;
                 }
-                return token;
+                return token;   
             }
         },
   };

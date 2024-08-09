@@ -12,8 +12,6 @@ const Member = () => {
     },
   });
 
-  console.log(session);
-
   return (
     <div>
         <h1>
