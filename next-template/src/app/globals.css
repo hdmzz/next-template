@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+
+@layer base {
+  h1 {
+    @apply text-4xl font-bold;
+  }
+  a {
+    @apply text-blue-500;
+  }
+}
